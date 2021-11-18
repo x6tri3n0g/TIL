@@ -8,3 +8,7 @@
 
 > 1. Unit test: [Jest](https://jestjs.io/)
 > 2. E2E test: [CodeconceptJS](https://codecept.io/)
+
+## Redux toolket tutorial
+
+`redux-toolkit-tutorial` 폴더
