@@ -57,6 +57,11 @@ const todoSlice = createSlice({
 		filter: (state, action) => {
 			state.filterType = action.payload;
 		},
+
+		// todo done 상태 목록 제거하기
+		clearCompleted: (state) => {
+			state.items = state.items.filter((todo) => !todo.item);
+		},
 	},
 });
 
