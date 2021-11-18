@@ -62,6 +62,16 @@ const todoSlice = createSlice({
 		clearCompleted: (state) => {
 			state.items = state.items.filter((todo) => !todo.item);
 		},
+
+		// todo 목록의 done 상태 변경하기(모두 done: true로 변경하거나 false로 변경하는 기능)
+		checkAll: (state, action) => {
+			const done = action.payload;
+
+			state.items = state.items.map((todo) => ({
+				...todo,
+				done,
+			}));
+		},
 	},
 });
 
