@@ -45,6 +45,13 @@ const todoSlice = createSlice({
 				todo.id === id ? { ...todo, text } : todo,
 			);
 		},
+
+		// todo 삭제하기
+		remove: (state, action) => {
+			const id = action.payload;
+
+			state.items = state.items.filter((todo) => todo.id !== id);
+		},
 	},
 });
 
