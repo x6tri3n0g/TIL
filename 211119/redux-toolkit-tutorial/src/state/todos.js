@@ -52,6 +52,11 @@ const todoSlice = createSlice({
 
 			state.items = state.items.filter((todo) => todo.id !== id);
 		},
+
+		// done 상태에 따라 목록 필터링하기
+		filter: (state, action) => {
+			state.filterType = action.payload;
+		},
 	},
 });
 
