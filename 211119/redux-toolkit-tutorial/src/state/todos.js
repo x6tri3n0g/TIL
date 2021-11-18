@@ -75,7 +75,8 @@ const todoSlice = createSlice({
 	},
 });
 
-export const { add } = todoSlice.actions;
+export const { add, check, edit, remove, filter, clearCompleted, checkAll } =
+	todoSlice.actions;
 
 // add('Hello'); { type: 'todos/add', payload: { id: 1, done: false, text: 'Hello' }
 
