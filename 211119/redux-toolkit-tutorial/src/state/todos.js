@@ -27,16 +27,23 @@ const todoSlice = createSlice({
 		},
 
 		// todo done으로 상태 변경하기
-		check: {
-			reducer: (state, action) => {
-				// 변경되는 아이템의 id와 체크 상태인 checked 값을 받아서 적용
-				const { id, checked } = action.payload;
+		check: (state, action) => {
+			// 변경되는 아이템의 id와 체크 상태인 checked 값을 받아서 적용
+			const { id, checked } = action.payload;
 
-				// immer를 사용하고 있기 때문에 `state.item = `와 같이 사용해야함(기존 상태는 유지해야하므로)
-				state.items = state.items.map((todo) =>
-					todo.id === id ? { ...todo, done: checked } : todo,
-				);
-			},
+			// immer를 사용하고 있기 때문에 `state.item = `와 같이 사용해야함(기존 상태는 유지해야하므로)
+			state.items = state.items.map((todo) =>
+				todo.id === id ? { ...todo, done: checked } : todo,
+			);
+		},
+
+		// todo의 text 상태 변경하기
+		edit: (state, action) => {
+			const { id, text } = action.payload;
+
+			state.items = state.items.map((todo) =>
+				todo.id === id ? { ...todo, text } : todo,
+			);
 		},
 	},
 });
