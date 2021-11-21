@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { check as checkTodo } from '../../state/todos';
+import { check as checkTodo, remove as removeTodo } from '../../state/todos';
 
 function Todo({ id, done, text }) {
 	const dispatch = useDispatch();
@@ -16,7 +16,10 @@ function Todo({ id, done, text }) {
 					type='checkbox'
 				/>
 				<label>{text}</label>
-				<button className='destroy' />
+				<button
+					className='destroy'
+					onClick={() => dispatch(removeTodo(id))}
+				/>
 			</div>
 			<input className='edit' value='Create a TodoMVC template' />
 		</li>
