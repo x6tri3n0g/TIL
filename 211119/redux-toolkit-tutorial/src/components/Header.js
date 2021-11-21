@@ -8,7 +8,7 @@ function Header() {
 	const dispatch = useDispatch();
 
 	const handleAddTodo = (e) => {
-		if (!(e.keyCode === 14 || e.key === 'Enter')) {
+		if (!(e.keyCode === 13 || e.key === 'Enter')) {
 			return;
 		}
 

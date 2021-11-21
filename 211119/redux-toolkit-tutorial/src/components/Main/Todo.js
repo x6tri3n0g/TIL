@@ -1,9 +1,9 @@
-function Todo(props) {
+function Todo({ id, done, text }) {
 	return (
-		<li className='completed'>
+		<li className={done ? 'completed' : ''}>
 			<div className='view'>
-				<input className='toggle' type='checkbox' checked />
-				<label>Taste JS</label>
+				<input checked={done} className='toggle' type='checkbox' />
+				<label>{text}</label>
 				<button className='destroy' />
 			</div>
 			<input className='edit' value='Create a TodoMVC template' />
