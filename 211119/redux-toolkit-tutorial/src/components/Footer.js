@@ -2,15 +2,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filter as filterTodo } from '../state/todos';
 
 const filterTypeSelector = (state) => state.todos.filterType;
+const todoCountSelector = (state) =>
+	state.todos.items.filter((todo) => !todo.done).length;
 
 function Footer() {
 	const dispatch = useDispatch();
 	const filterType = useSelector(filterTypeSelector);
+	const todoCount = useSelector(todoCountSelector);
 
 	return (
 		<footer className='footer'>
 			<span className='todo-count'>
-				<strong>0</strong> item left
+				<strong>{todoCount}</strong> item left
 			</span>
 			<ul className='filters'>
 				<li>
