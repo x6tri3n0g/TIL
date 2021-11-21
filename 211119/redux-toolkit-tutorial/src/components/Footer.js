@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { filter as filterTodo } from '../state/todos';
+import {
+	filter as filterTodo,
+	clearCompleted as clearCompletecTodo,
+} from '../state/todos';
 
 const filterTypeSelector = (state) => state.todos.filterType;
 const todoCountSelector = (state) =>
@@ -41,7 +44,11 @@ function Footer() {
 					</a>
 				</li>
 			</ul>
-			<button className='clear-completed'>Clear completed</button>
+			<button
+				className='clear-completed'
+				onClick={() => dispatch(clearCompletecTodo())}>
+				Clear completed
+			</button>
 		</footer>
 	);
 }
