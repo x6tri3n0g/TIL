@@ -60,7 +60,7 @@ const todoSlice = createSlice({
 
 		// todo done 상태 목록 제거하기
 		clearCompleted: (state) => {
-			state.items = state.items.filter((todo) => !todo.item);
+			state.items = state.items.filter((todo) => !todo.done);
 		},
 
 		// todo 목록의 done 상태 변경하기(모두 done: true로 변경하거나 false로 변경하는 기능)

@@ -1,8 +1,20 @@
+import { useDispatch } from 'react-redux';
+import { check as checkTodo } from '../../state/todos';
+
 function Todo({ id, done, text }) {
+	const dispatch = useDispatch();
+
 	return (
 		<li className={done ? 'completed' : ''}>
 			<div className='view'>
-				<input checked={done} className='toggle' type='checkbox' />
+				<input
+					checked={done}
+					className='toggle'
+					onChange={(e) =>
+						dispatch(checkTodo({ id, checked: e.target.checked }))
+					}
+					type='checkbox'
+				/>
 				<label>{text}</label>
 				<button className='destroy' />
 			</div>
