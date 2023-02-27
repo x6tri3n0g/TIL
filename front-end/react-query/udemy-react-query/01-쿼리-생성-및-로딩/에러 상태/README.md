@@ -65,3 +65,22 @@ React Query는 데이터 관리뿐만 아니라 서버 상태 관리에 도움�
   - Takes query client as the value
 - Run `useQuery`
   - 서버에서 데이터를 가져오는 hook
+
+### QueryClientProvider 세팅하기
+- `App.tsx`의 모든 컴포넌트를 감싸는 `QueryClientProvider`를 생성하고 client로 `QueryClient` 객체를 할당
+```tsx
+import { QueryClient, QueryClientProvier } from 'react-query';
+
+...
+
+const queryClient = new QueryClient();
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      ...
+    </QueryClientProvider>
+  )
+}
+```
+- `QueryClientProvider`를 통해 App의 컴포넌트에 react query 캐시를 통해 데이터를 제공할 세팅을 한다.
