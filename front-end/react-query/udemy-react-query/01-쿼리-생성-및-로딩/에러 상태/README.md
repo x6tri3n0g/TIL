@@ -47,3 +47,12 @@ React Query는 데이터 관리뿐만 아니라 서버 상태 관리에 도움�
 - Callbacks: 쿼리가 성공하거나 오류가 났을 때를 구별하여 조치를 취할 수 있도록 콜백을 전달할 수 있음
 
 ## First Project! Blog-em lpsum
+- Get data from [jsonplaceholder](https://jsonplaceholder.typicode.com/)
+- Very Simple, focus on React Query concepts
+  - Fetching data
+  - Loading/error states
+  - React Query dev tools
+  - Pagination
+  - Prefetching
+  - Mutations
+
