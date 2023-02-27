@@ -99,3 +99,28 @@ const { data } = useQuery('posts', fetchPosts);
 - 두번째로는 *query function*으로 이 쿼리에 대한 데이터를 가져오는 함수
   - 데이터를 가져오는 비동기 함수여야 함
   - `fetchPosts` 함수는 비동기이기 때문에 반환된 `data`는 처음에 `undefined`일 것이다.
+
+### useQuery에서 반환되는 속성들
+[Tanstack reference - useQuery](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+  
+- `isLoading`, `isError` 속성 살펴보기
+  - `isLoading`: data fetch가 아직 로드중인 상태(Boolean)
+  - `isError`: data fetch 중 error인 상태(Boolean)
+
+#### `isFetching` vs. `isLoading`
+- `isFetching`
+  - false, 비동기 쿼리가 해결되지 않았음(**hasn't yet resolved**)
+    - Fetching이 완료되지 않았음 => pending
+  - `isLoading`를 감싸는 상위 상태(super set)
+- `isLoading`
+  - 가져오는 상태에 있음을 의미
+  - `isFetching`의 하위 상태(sub set)
+  - **데이터를 가져오는 중이고 표시할 캐시 데이터도 없음**
+    - 쿼리 함수가 아직 해결되지 않는 것
+    - 캐시 된 데이터가 없음
+      - 이 쿼리를 만든 적이 없음
+* 큰 차이가 없어 보일 수 있지만 Pagination 시 *캐시된 데이터가 있을 때와 없을 때를 구분해야 한다*는 것을 알게될 것이다.
+
+#### `error` 객체
+- `error` 객체를 통해서 error 상태의 구체적인 데이터를 볼수 있음
+- `onError`라는 것을 통해 error 시 callback 함수를 실행할 수도 있음
