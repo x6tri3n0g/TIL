@@ -84,3 +84,18 @@ function App() {
 }
 ```
 - `QueryClientProvider`를 통해 App의 컴포넌트에 react query 캐시를 통해 데이터를 제공할 세팅을 한다.
+
+### Posts 컴포넌트에서 posts 데이터 불러오기
+- `useQuery`를 통해서 데이터를 불러오기 위해서 hook의 parameters를 살펴본다. 
+```ts
+import { useQuery } from 'react-query';
+
+...
+
+const { data } = useQuery('posts', fetchPosts);
+```
+- `useQuery`는 다양한 속성을 가진 개체를 반환함
+- 첫번째 인자는 *query key*로 쿼리의 이름을 뜻함
+- 두번째로는 *query function*으로 이 쿼리에 대한 데이터를 가져오는 함수
+  - 데이터를 가져오는 비동기 함수여야 함
+  - `fetchPosts` 함수는 비동기이기 때문에 반환된 `data`는 처음에 `undefined`일 것이다.
