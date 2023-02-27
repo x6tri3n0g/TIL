@@ -56,3 +56,11 @@ React Query는 데이터 관리뿐만 아니라 서버 상태 관리에 도움�
   - Prefetching
   - Mutations
 
+### Getting Started
+- `npm install react-query`
+- Create query client
+  - Client that manages queries and cache
+- Apply QueryProvider
+  - Provides cache and client config to children
+  - Takes query client as the value
+- Run `useQuery`
