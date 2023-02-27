@@ -59,8 +59,9 @@ React Query는 데이터 관리뿐만 아니라 서버 상태 관리에 도움�
 ### Getting Started
 - `npm install react-query`
 - Create `query client`
-  - Client that manages queries and cache
+  - 쿼리와 서버의 데이터 캐시를 관리하는 클라이언트
 - Apply `QueryProvider`
-  - Provides cache and client config to children
+  - 자녀 컴포넌트에 캐시와 클라이언트 구성을 제공할 Provider
   - Takes query client as the value
 - Run `useQuery`
+  - 서버에서 데이터를 가져오는 hook
