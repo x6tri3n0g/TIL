@@ -148,3 +148,35 @@ function App() {
     - 마지막으로 업데이트된 타임스탬프
   - 쿼리에 의해 업데이트된 데이터 탐색기(Data explorer)
   - 쿼리를 볼 수 있는 쿼리 탐색기(Query explorer)
+
+### Stale Time vs. Cache Time
+#### Stale Data: 만료된 데이터
+- 오래된 식빵
+- 데이터 리페칭(refetching)은 만료된 데이터에서만 실행됨
+  - 이외에도 리페칭에는 여러 트리거가 있음 - 트리거일뿐
+    - 컴포넌트가 다시 마운트되거나(component remount)
+    - 윈도우가 다시 포커스되었을 때(window refocus)
+- `staleTime`: 데이터를 허용하는 'max age'
+  - 데이터가 만료됐다고 판단하기 전까지 허용하는 시간
+```tsx
+const { data, isError, error, isLoading } = useQuery('posts', fetchPosts, { 
+  staleTime: 2000,
+});
+```
+- 보통은 리페칭이 실행되는 경우라도 데이터가 만료되지 않으면 리페칭은 실행되지 않음
+  - 데이터가 만료된 경우에만 실행됨
+- 그렇다면 왜 staleTime의 default value는 `0`일까?
+  >React Query 개발자 Tanner Linsley : "Why is my data not updating?!"
+  - 데이터는 항상 만료 상태이므로 서버에서 다시 가져와야 한다는 의미
+
+#### staleTime vs. cacheTime
+- `staleTime`은 **리페칭할때 고려사항**
+- **캐시는 나중에 다시 필요할 수도 있는 데이터용**
+  - 특정 쿼리에 대한 활성 `useQuery`가 없는 경우, 해당 데이터는 "콜드 스토리지"로 이동
+  - 구성된 `cacheTime`이 지나면 캐시의 데이터가 *만료*(기본은 5분, 5000ms)
+    - cacheTime이 관찰하는 시간의 양은 특정 쿼리에 대한 `useQuery`가 활성화된 후 경과한 시간
+  - 캐시가 만료되면 가비지 컬렉션이 실행
+    - 클라이언트는 (캐시되었던) 데이터를 더이상 사용할 수 없음
+- 데이터가 캐시에 있는 동안에는 페칭(Fetching)할 때 사용될 수 있음 => `캐시 데이터를 재사용`
+  - 페칭을 멈추는 것이 아니기 때문에 서버의 최신 데이터로 새로고침이 가능한 것
+  - 만료된 데이터가 클라이언트에 꼭 보여지지 않아야한다면, `cacheTime`을 0으로 설정하는 것도 가능
