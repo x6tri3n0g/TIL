@@ -1,5 +1,10 @@
 # 01. 쿼리 생성 및 로딩/에러 상태
 
+## 예제 실습
+- [Blog-eml Ipsum 세팅 #1](https://github.com/x6tri3n0g/udemy-REACT-QUERY/pull/1)
+- [useQuery를 통해 블로그 Post 불러오기 #3](https://github.com/x6tri3n0g/udemy-REACT-QUERY/pull/3)
+
+
 ## Client State vs. Server State
 - `Client State`: 웹 브라우저 세션과 관련된 모든 정보를 의미합니다.
   - 웹 브라우저의 어떤 상태를 위한 값
