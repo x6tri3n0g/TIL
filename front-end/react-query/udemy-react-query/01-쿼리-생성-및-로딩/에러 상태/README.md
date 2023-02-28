@@ -124,3 +124,15 @@ const { data } = useQuery('posts', fetchPosts);
 #### `error` 객체
 - `error` 객체를 통해서 error 상태의 구체적인 데이터를 볼수 있음
 - `onError`라는 것을 통해 error 시 callback 함수를 실행할 수도 있음
+
+### React Query Devtools
+[React Query Devtools](https://tanstack.com/query/latest/docs/react/devtools)
+- React Query Dev Tools는 앱에 추가할 수 있는 컴포넌트로 개발중인 상태를 표시함
+  - 이를 통해 예상되지 않는 동작에 대한 문제를 해결하는데 도움이 될 수도 있음
+- 알 수 있는 것
+  - 쿼리 키를 통해 쿼리를 표시함
+    - 활성(active), 비활성(inactive), 만료(stale) 등 쿼리의 모든 상태를 알려줌
+    - 마지막으로 업데이트된 타임스탬프
+  - 쿼리에 의해 업데이트된 데이터 탐색기(Data explorer)
+  - 쿼리를 볼 수 있는 쿼리 탐색기(Query explorer)
+  
