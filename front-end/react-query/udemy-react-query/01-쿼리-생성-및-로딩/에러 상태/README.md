@@ -127,6 +127,19 @@ const { data } = useQuery('posts', fetchPosts);
 
 ### React Query Devtools
 [React Query Devtools](https://tanstack.com/query/latest/docs/react/devtools)
+- `react-query/devtools`에 위치함
+```ts
+import { ReactQueryDevtools } from 'react-query/devtools';
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      ...
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  );
+}
+```
 - React Query Dev Tools는 앱에 추가할 수 있는 컴포넌트로 개발중인 상태를 표시함
   - 이를 통해 예상되지 않는 동작에 대한 문제를 해결하는데 도움이 될 수도 있음
 - 알 수 있는 것
@@ -135,4 +148,3 @@ const { data } = useQuery('posts', fetchPosts);
     - 마지막으로 업데이트된 타임스탬프
   - 쿼리에 의해 업데이트된 데이터 탐색기(Data explorer)
   - 쿼리를 볼 수 있는 쿼리 탐색기(Query explorer)
-  
