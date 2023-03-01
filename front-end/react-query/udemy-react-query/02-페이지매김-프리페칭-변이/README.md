@@ -58,3 +58,51 @@ return (
   </>
 )
 ```
+
+## Prefetching
+> Pagination을 구현한 위 결과물은 페이지 이동시 화면의 깜빡임임을 보여줘 사용자 경험이 좋지 않다. 다음 페이지에 대한 데이터 캐시가 없기 때문에 사용자는 "Next Page" 버튼을 누르고 잠시 로드되는 화면을 보게됩니다. Prefetching을 통해서 데이터를 미리 가져와 캐시에 넣어 사용자가 기다릴 필요가 없도록 해봅니다.
+
+- `Prefetch`
+  - 데이터를 캐시에 추가 구성해놓을 수 있지만 기본값으로 만료(stale) 상태
+  - 데이터를 사용하고자 할 때 만료상태에서 데이터를 다시 가져옴
+  - 데이터를 다시 가져오는 중에는 캐시에 있는 데이터를 이용해 앱에 먼저  노출
+    - 물론 캐시가 만료되지 않았다는 가정하에...
+    - 만약 `cacheTime`보다 더 "Next Page" 이전 페이지에 머물다가 다음 페이지로 넘어간다면 사용자는 loading 화면을 보게 될 것이다.
+- **추후 사용자가 사용할 법한 모든 데이터에 프리페칭을 사용**
+  - `Pagination` 뿐만 아니라 *다수의 사용자가 웹사이트 방문 시 통계적으로 특정 탭을 누를 확률이 높다면 해당 데이터를 미리 가져오는 게 좋을 것이다.*
+- [TanStack Query v4 - Prefetching](https://tanstack.com/query/v4/docs/react/guides/prefetching)
+- `prefetchQuery`는 `queryClient`의 메서드
+```tsx
+import { useQuery, useQueryClient } from 'react-query';
+
+...
+
+const queryClient = useQueryClient();
+
+useEffect(() => {
+  if (currentPage < maxPostPage) {
+    const nextPage = currentPage + 1;
+    queryClient.prefetchQuery(
+      ['posts', nextPage], 
+      () => fetchPosts(nextPage)
+    );
+  }
+}, [currentPage, queryClient]);
+...
+```
+- `useEffect`를 사용해서 페이지 최대값 이전까지 Prefetching를 할 수 있도록 구현
+  - `queryClient.prefetchQuery()`
+    - `prefetchQuery`에 필요한 파라미터는 `useQuery`와 동일하게 사용됨
+- 이전 페이지로 돌아갔을 때 캐시에 해당 데이터가 있도록 만들고 싶은 경우
+  - `useQuery`에  `keepPreviousData: true`로 데이터를 유지할 수 있음
+```tsx
+const { data, isError, error, isLoading } = useQuery(
+  ['posts', currentPage],
+  () => fetchPosts(currentPage),
+  { 
+    staleTime: POSTS_STALE_TIME,
+    keepPreviousData: true,
+  }
+);
+```
+  
