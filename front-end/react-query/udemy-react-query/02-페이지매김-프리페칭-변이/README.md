@@ -111,5 +111,23 @@ const { data, isError, error, isLoading } = useQuery(
   - 비동기 쿼리 함수가 아직 해결되지 않았을 때(`pending` 상태일때) true
   - 데이터를 가져오는 중
 - `isLoading`
-  - isFetching이 true이면서 쿼리에 대해 캐시된 데이터가 없는 상태를 뜻함
+  - `isFetching`이 true이면서 쿼리에 대해 캐시된 데이터가 없는 상태를 뜻함
   - 캐시된 데이터가 없고 데이터를 가져오는 상황에 해당
+- `isFetching`을 통해 로딩을 보여주게 되면 사용자는 캐시 데이터가 들어옴에 상관없이 로딩을 볼 수 있음
+- `isFetching`은 prefetch 전에 사용될 수 있는데 즉, nextPage 데이터를 포함한 캐시를 미리 가져오기 전을 말함
+
+## Mutations(변이)
+- Mutation: 서버에 데이터를 업데이트하도록 서버에 네트워크 호출을 실시함 
+  - 블로그 포스트를 추가, 삭제, 수정하는 것
+
+## useMutaion
+[React Query - useMutation](https://react-query-v3.tanstack.com/reference/useMutation)
+- `useMutation`은 일부 예외를 제외하고 `useQuery`와 상당히 유사함
+  - `mutate` 함수를 반환
+    - 변경사항을 토대로 서버를 호출할 때 사용
+  - 데이터를 저장하지 않으므로 쿼리 키는 필요하지 않음
+  - `isLoading`은 존재하지만 `isFetching`은 없음
+    - 변이에 관련된 캐시는 존재하지 않고 재시도 또한 기본값으로 존재하지 않음
+  - 기본적으로 retry를 수행하지 않음
+    - `useQuery`는 기본값으로 3회 재시도함
+    - retry는 설정으로 제어할수 있음
