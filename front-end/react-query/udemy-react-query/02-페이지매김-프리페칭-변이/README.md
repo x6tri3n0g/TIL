@@ -131,3 +131,26 @@ const { data, isError, error, isLoading } = useQuery(
   - 기본적으로 retry를 수행하지 않음
     - `useQuery`는 기본값으로 3회 재시도함
     - retry는 설정으로 제어할수 있음
+```tsx
+  const deleteMutation = useMutation((postId) => deletePost(postId));
+
+...
+
+  <button
+    onClick={() => deleteMutation.mutate(post.id)}
+  >
+    Delete
+  </button>
+  {deleteMutation.isError && 
+    <p style={{ color: 'red' }}>Error deleting the post.</p>
+  }
+  {deleteMutation.isLoading && 
+    <p style={{ color: 'purple' }}>Deleting the post.</p>
+  }
+  {deleteMutation.isSuccess && 
+    <p style={{ color: 'green' }}>Post has (not) been deleted.<p>
+  }
+
+...
+```
+- 위와 같이 mutate를 통해 변이 속성을 실행하여 변이의 호출을 조절할 수 쿼리에서 진행한 것과 유사한 방식으로 주기를 처리할 수 있음
