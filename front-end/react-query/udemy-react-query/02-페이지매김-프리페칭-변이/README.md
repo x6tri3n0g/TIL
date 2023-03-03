@@ -106,3 +106,10 @@ const { data, isError, error, isLoading } = useQuery(
 );
 ```
   
+## isFetching vs. isLoading
+- `isFetching`
+  - 비동기 쿼리 함수가 아직 해결되지 않았을 때(`pending` 상태일때) true
+  - 데이터를 가져오는 중
+- `isLoading`
+  - isFetching이 true이면서 쿼리에 대해 캐시된 데이터가 없는 상태를 뜻함
+  - 캐시된 데이터가 없고 데이터를 가져오는 상황에 해당
