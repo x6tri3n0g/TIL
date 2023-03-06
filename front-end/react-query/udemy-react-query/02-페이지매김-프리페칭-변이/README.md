@@ -176,3 +176,23 @@ return (
 )
 ...
 ```
+
+## React Query 기초 총정리
+- package를 설치하여 `QueryClient`를 생성하고 `QueryProvider`를 추가했다.
+- `useQuery`를 통해 `isLoading`/`isFetching` 그리고 `error`과 같은 객체를 반환한다.
+- `staleTime`은 `re-fetch`되기 전 (trigger에 의해) 데이터가 사용 가능한 상태로 유지되는 시간
+  - 서버로 돌아가 데이터가 여전히 정확한지 확인해야 하는 시점까지
+  - `staleTime` 만큼 `re-fetch`하지 않음
+- `cacheTime`은 데이터가 비활성화된 이후 남아 있는 시간을 말함
+  - 캐시된 데이터는 쿼리를 다시 실행했을 때 사용됨
+  - 데이터가 최신 상태인지 서버에서 확인하는 동안 해당 위치에서 사용자에게 보여지게 됨
+- dependency arrays를 통해 query keys를 관리
+  - queryKey가 변경되면 useQuery hook은 쿼리를 반복
+  - 데이터 함수가 바뀌면 queryKey도 데이터를 변경해야 하는 경우 다시 실행될 수 있도록 변경됨
+- pagination and pre-fetching
+  - pagination
+    - 페이지를 넘기는 경우 컴포넌트에서 상태를 유지해야 할때 사용
+  - pre-fetching
+    - 추가 페이지(다음 페이지)를 pre-fetching
+    - 서버에서 최신인지 확인하는 동안 캐시된 데이터가 보여질 수 있도록 사용됨
+- `useMutation`을 통한 server side-effect들을 알아봄
