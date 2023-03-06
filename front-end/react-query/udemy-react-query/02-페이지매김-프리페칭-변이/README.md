@@ -154,3 +154,25 @@ const { data, isError, error, isLoading } = useQuery(
 ...
 ```
 - 위와 같이 mutate를 통해 변이 속성을 실행하여 변이의 호출을 조절할 수 쿼리에서 진행한 것과 유사한 방식으로 주기를 처리할 수 있음
+
+## Code Quiz! "Update" Post Title
+- `updatePost`와 함께 `useMutation`을 사용하여 버튼 `onClick`시 "Update title"하는 코드를 작성하라
+- `useMutation`를 통해 update하는 방식도 delete와 비슷함
+```tsx
+...
+const udpateMutation = useMutation((postId) => updatePost(postId));
+
+return (
+  <>
+    <button
+      onClick={() => udpateMutation.mutate(post.id)}
+    >
+      {udpateMutation.data.title}
+    </button>
+    {udpateMutation.isError && <p style={{ color: 'red' }}>Error updating the post.</p>}
+    {udpateMutation.isLoading && <p style={{ color: 'purple' }}>Updating the post.</p>}
+    {udpateMutation.isSuccess && <p style={{ color: 'green' }}>Post has (not) been updated.</p>}
+  </>
+)
+...
+```
