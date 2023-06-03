@@ -19,3 +19,13 @@ var removeLastElement = function (array) {
 };
 var removedlastElementArray = removeLastElement(numberArray);
 console.log(removedlastElementArray);
+/* 값 두개를 리턴하는 함수로 만들기 */
+var pop = function (array) {
+    var copiedArray = __spreadArray([], array);
+    var last = copiedArray.pop();
+    return {
+        last: last,
+        array: copiedArray
+    };
+};
+console.log(pop(numberArray));

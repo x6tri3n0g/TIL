@@ -17,4 +17,16 @@ const removeLastElement = (array: number[]) => {
 
 const removedlastElementArray = removeLastElement(numberArray);
 
-console.log(removedlastElementArray);
+console.log(removeLastElement(numberArray));
+
+/* 값 두개를 리턴하는 함수로 만들기 */
+const pop = (array: number[]) => {
+  const copiedArray = [...array];
+  const last = copiedArray.pop();
+  return {
+    last,
+    array: copiedArray,
+  }
+}
+
+console.log(pop(numberArray));
