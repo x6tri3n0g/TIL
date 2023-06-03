@@ -1,12 +1,16 @@
-var mailing_list = [];
+const mailingList: string[] = [];
 
-function add_contact(email) {
-  mailing_list.push(email);
+// Action
+const submitForm = (_: string[]) => undefined;
+
+const addListLast = (email: string) => {
+  return [...mailingList, email];
 }
 
-function submit_form_handler(event) {
-  var form = event.target;
-  var email = form.elements['email'].value;
-  add_contact(email);
+const submitFormHandler = (event: HTMLFormElement) => {
+  const form = event.currentTarget;
+  const email = form.elements['email'].value;
+  const newEmailList = addListLast(email);
+  submitForm(newEmailList);
 }
 
