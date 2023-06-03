@@ -15,8 +15,6 @@ const removeLastElement = (array: number[]) => {
   return copiedArray;
 }
 
-const removedlastElementArray = removeLastElement(numberArray);
-
 console.log(removeLastElement(numberArray));
 
 /* 값 두개를 리턴하는 함수로 만들기 */
