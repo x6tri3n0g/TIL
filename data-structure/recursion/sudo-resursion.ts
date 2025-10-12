@@ -10,11 +10,13 @@
  */
 function lookForKey(box: any) {
   for (let item of box) {
-    if (item.isKey()) {
+    if (item.isBox()) {
+      // 재귀 단계
+      lookForKey(item); // 재귀적 호출
+    } else if (item.isKey()) {
+      // 기본(종료) 단계
       console.log("key found");
       return item;
-    } else if (item.isBox()) {
-      lookForKey(item); // 재귀적 호출
     }
   }
 }
