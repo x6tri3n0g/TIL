@@ -1,5 +1,6 @@
 /** TCO
- * @description Tail Call Optimization
+ * @description Tail Call Optimization, 꼬리 재귀 최적화: 함수형 프로그래밍에서 재귀 호출을 최적화하는 기술
+ * 함수의 마지막 연산이 재귀 호출인 경우, 스택 메모리를 절약하고 성능을 향상시키는 기술`
  * @param num
  * @param acc
  * @returns
