@@ -84,3 +84,10 @@ filesFromBFS.forEach((file, index) => {
 });
 
 console.log(`\n -> 총 ${filesFromBFS.length}개 파일 발견`);
+
+/**
+ * @description 실행 방법
+ * --lib es2015,dom 옵션 추가, 이유: Set 객체를 사용하기 위해
+ * > tsc --lib es2015,dom ./data-structure/tree/traversal-algorithm.ts
+ * > node ./data-structure/tree/traversal-algorithm.js
+ */
