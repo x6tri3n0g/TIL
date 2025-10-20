@@ -1,53 +1,4 @@
-interface FileDirectoryType {
-  name: string;
-  type: "directory" | "file";
-  children?: FileDirectoryType[];
-}
-
-const FILE_DIRECTORY_DFS: FileDirectoryType = {
-  name: "src",
-  type: "directory",
-  children: [
-    {
-      name: "index.js",
-      type: "file",
-    },
-    {
-      name: "utils.js",
-      type: "file",
-    },
-    {
-      name: "components",
-      type: "directory",
-      children: [
-        {
-          name: "components.js",
-          type: "file",
-        },
-      ],
-    },
-    {
-      name: "pages",
-      type: "directory",
-      children: [
-        {
-          name: "pages.js",
-          type: "file",
-        },
-      ],
-    },
-    {
-      name: "styles",
-      type: "directory",
-      children: [
-        {
-          name: "styles.css",
-          type: "file",
-        },
-      ],
-    },
-  ],
-};
+import { FileDirectoryType, FILE_DIRECTORY } from "../data/file-directory-data";
 
 /**
  * @description DFS 방식으로 파일 트리를 순회하는 함수 (개선 전)
@@ -108,18 +59,30 @@ function collectAllFilesDFS(
 
 // 실행
 console.log("=== ❌ 개선 전 (파일명만 출력) ===");
-searchFileDFS_OLD(FILE_DIRECTORY_DFS);
+searchFileDFS_OLD(FILE_DIRECTORY);
 
 console.log("\n=== ✅ 개선 후 (전체 경로 출력) ===");
-searchFileDFS(FILE_DIRECTORY_DFS);
+searchFileDFS(FILE_DIRECTORY);
 
 console.log("\n=== 📁 파일 경로 수집 (DFS 방식) ===");
-const allFiles = collectAllFilesDFS(FILE_DIRECTORY_DFS);
+const allFiles = collectAllFilesDFS(FILE_DIRECTORY);
 allFiles.forEach((file, index) => {
   console.log(`${index + 1}. ${file}`);
 });
 
 console.log(`\n -> 총 ${allFiles.length}개 파일 발견`);
+
+// === 📁 파일 경로 수집 (DFS 방식) ===
+// 1. src/index.js
+// 2. src/utils/format.js
+// 3. src/utils/date.js
+// 4. src/components/components.js
+// 5. src/components/shared/button.js
+// 6. src/components/shared/input.js
+// 7. src/pages/pages.js
+// 8. src/styles/styles.css
+
+//  -> 총 8개 파일 발견
 
 /**
  * @description 실행 방법

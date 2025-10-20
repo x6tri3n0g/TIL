@@ -7,8 +7,18 @@ var FILE_DIRECTORY_DFS = {
             type: "file"
         },
         {
-            name: "utils.js",
-            type: "file"
+            name: "utils",
+            type: "directory",
+            children: [
+                {
+                    name: "format.js",
+                    type: "file"
+                },
+                {
+                    name: "date.js",
+                    type: "file"
+                },
+            ]
         },
         {
             name: "components",
@@ -17,6 +27,20 @@ var FILE_DIRECTORY_DFS = {
                 {
                     name: "components.js",
                     type: "file"
+                },
+                {
+                    name: "shared",
+                    type: "directory",
+                    children: [
+                        {
+                            name: "button.js",
+                            type: "file"
+                        },
+                        {
+                            name: "input.js",
+                            type: "file"
+                        },
+                    ]
                 },
             ]
         },
@@ -104,6 +128,13 @@ allFiles.forEach(function (file, index) {
     console.log(index + 1 + ". " + file);
 });
 console.log("\n -> \uCD1D " + allFiles.length + "\uAC1C \uD30C\uC77C \uBC1C\uACAC");
+// === 📁 파일 경로 수집 (DFS 방식) ===
+// 1. src/index.js
+// 2. src/utils.js
+// 3. src/components/components.js
+// 4. src/pages/pages.js
+// 5. src/styles/styles.css
+//  -> 총 5개 파일 발견
 /**
  * @description 실행 방법
  * > tsc --lib es2015,dom ./data-structure/dfs/recursion-file-search.ts

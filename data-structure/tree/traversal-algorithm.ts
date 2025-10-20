@@ -1,53 +1,4 @@
-interface FileDirectoryType {
-  name: string;
-  type: "directory" | "file";
-  children?: FileDirectoryType[];
-}
-
-const FILE_DIRECTORY: FileDirectoryType = {
-  name: "src",
-  type: "directory",
-  children: [
-    {
-      name: "index.js",
-      type: "file",
-    },
-    {
-      name: "utils.js",
-      type: "file",
-    },
-    {
-      name: "components",
-      type: "directory",
-      children: [
-        {
-          name: "components.js",
-          type: "file",
-        },
-      ],
-    },
-    {
-      name: "pages",
-      type: "directory",
-      children: [
-        {
-          name: "pages.js",
-          type: "file",
-        },
-      ],
-    },
-    {
-      name: "styles",
-      type: "directory",
-      children: [
-        {
-          name: "styles.css",
-          type: "file",
-        },
-      ],
-    },
-  ],
-};
+import { FileDirectoryType, FILE_DIRECTORY } from "../data/file-directory-data";
 
 /**
  * @description BFS 방식으로 파일 경로를 수집하는 함수
@@ -84,6 +35,18 @@ filesFromBFS.forEach((file, index) => {
 });
 
 console.log(`\n -> 총 ${filesFromBFS.length}개 파일 발견`);
+
+// === 파일 경로 수집 (BFS 방식) ===
+// 1. src/index.js
+// 2. src/utils/format.js
+// 3. src/utils/date.js
+// 4. src/components/components.js
+// 5. src/pages/pages.js
+// 6. src/styles/styles.css
+// 7. src/components/shared/button.js
+// 8. src/components/shared/input.js
+
+//  -> 총 8개 파일 발견
 
 /**
  * @description 실행 방법
